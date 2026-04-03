@@ -1,7 +1,7 @@
 name: Simple Example
 
 on:
-workflow_call:
+  workflow_call:
 
 jobs:
   CI_Steps:
