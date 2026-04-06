@@ -11,11 +11,22 @@ jobs:
       - name: Code checkout
         uses: actions/checkout@v4
 
+      - name: Code Lint
+        run: echo "Ok"
+
       - name: Code Build
         run: echo "Ok"
 
-      - name: Code Test
-        run: echo "Ok"
+      - name: Install nodejs module
+        run: npm install
+
+
+
+      - name: Code Unit Test
+        run: echo npm runtest:unit
+
+      - name: Code integration Test
+        run: echo npm runtest:integration
 
       - name: Code Review
         run: echo "Ok"
