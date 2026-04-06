@@ -6,7 +6,7 @@ on:
 jobs:
   CI_Steps:
 
-    runs-on: ubuntu-latest
+    runs-on: [self_hosted]
     steps:
       - name: Code checkout
         uses: actions/checkout@v4
