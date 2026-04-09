@@ -2,6 +2,10 @@ name: Simple Example
 
 on:
   workflow_call:
+    inputs:
+      project_name:
+        required: true
+        type: string
 
 jobs:
   CI_Steps:
@@ -29,7 +33,7 @@ jobs:
         run: echo npm runtest:integration
 
       - name: Code Review
-        run: echo "Ok"
+        run:  echo /opt/sonar-scanner-5.0.1.3006-linux/bin/sonar-scanner -Dsonar.host.url=http://sonarqube-internal.awsdevops16297.sbs:9000 -Dsonar.login=admin -Dsonar.password=DevOps321
 
 
       - name: Release software
