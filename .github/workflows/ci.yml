@@ -1,4 +1,4 @@
-name: Simple Example
+name: Continous intgeration
 
 on:
   workflow_call:
@@ -11,7 +11,6 @@ on:
 
 jobs:
   CI_Steps:
-
     runs-on: [self-hosted]
     permissions:
       id-token: write   # ✅ REQUIRED for OIDC
