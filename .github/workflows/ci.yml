@@ -8,8 +8,6 @@ on:
         type: string
   workflow_dispatch:
 
-
-
 jobs:
   CI_Steps:
     runs-on: [self-hosted]
