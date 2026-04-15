@@ -40,8 +40,8 @@ jobs:
           role: github-actions
           tlsSkipVerify: true
           secrets: |
-            common/data/common sonarqube_user | sonarqube_user ;
-            common/data/common sonarqube_password | sonarqube_password ;
+            common/data/common sonarqube_user | sonarqube_user;
+            common/data/common sonarqube_password | sonarqube_password;
             
 
       - name: Code Unit Test
