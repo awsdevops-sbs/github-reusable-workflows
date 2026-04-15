@@ -43,6 +43,7 @@ jobs:
           secrets: |
             common/data/common sonarqube_user | sonarqube_user ;
             common/data/common sonarqube_password | sonarqube_password ;
+            
 
       - name: Code Unit Test
         run: echo npm runtest:unit
