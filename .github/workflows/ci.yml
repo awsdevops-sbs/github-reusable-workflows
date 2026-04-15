@@ -12,9 +12,6 @@ on:
 jobs:
   CI_Steps:
     runs-on: [self-hosted]
-    permissions:
-      id-token: write   # ✅ REQUIRED for OIDC
-      contents: read
     steps:
       - name: Code checkout
         uses: actions/checkout@v4
