@@ -7,9 +7,7 @@ on:
         required: true
         type: string
 
-    secrets:
-       vault_token:
-       required: true
+
 
 jobs:
   CI_Steps:
