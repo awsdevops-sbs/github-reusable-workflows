@@ -40,8 +40,8 @@ jobs:
           role: github-actions
           tlsSkipVerify: true
           secrets: |
-            common/data/common sonarqube_user | sonarqube_user ;
-            common/data/common sonarqube_password | sonarqube_password ;
+            common/data/common sonarqube_user | sonarqube_user;
+            common/data/common sonarqube_password | sonarqube_password;
             
 
       - name: Code Unit Test
@@ -51,7 +51,7 @@ jobs:
         run: echo npm runtest:integration
 
       - name: Code Review
-        run:  echo /opt/sonar-scanner-5.0.1.3006-linux/bin/sonar-scanner -Dsonar.host.url=http://sonarqube-internal.awsdevops16297.sbs:9000 -Dsonar.login=${{ steps.vault-secrets.outputs.sonarqube_user}} -Dsonar.password=${{ steps.vault-secrets.outputs.sonarqube_password }}
+        run:  /opt/sonar-scanner-5.0.1.3006-linux/bin/sonar-scanner -Dsonar.host.url=http://sonarqube-internal.awsdevops16297.sbs:9000 -Dsonar.login=${{ steps.vault-secrets.outputs.sonarqube_user}} -Dsonar.password=${{ steps.vault-secrets.outputs.sonarqube_password }}
 
 
       - name: Release software
