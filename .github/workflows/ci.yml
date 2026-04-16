@@ -19,7 +19,6 @@ jobs:
   CI_Steps:
     runs-on: [self-hosted]
 
-
     steps:
       - name: Code checkout
         uses: actions/checkout@v4
