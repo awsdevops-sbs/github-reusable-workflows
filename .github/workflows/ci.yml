@@ -28,9 +28,6 @@ jobs:
       - name: Code Build
         run: echo "Ok"
 
-
-
-
       - name: Import secrets from Vault
         uses: hashicorp/vault-action@v2
         id: vault-secrets
