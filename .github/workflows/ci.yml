@@ -13,7 +13,6 @@ on:
 jobs:
   CI_Steps:
     runs-on: [self-hosted]
-
     permissions:
       id-token: write
       contents: read
