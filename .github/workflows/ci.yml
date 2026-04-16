@@ -6,7 +6,9 @@ on:
       project_name:
         required: true
         type: string
-  workflow_dispatch:
+      npm_install:
+        required: true
+        type: boolean
 
 jobs:
   CI_Steps:
@@ -27,8 +29,6 @@ jobs:
         run: echo "Ok"
 
 
-      - name: Install nodejs module
-        run: npm install
 
 
       - name: Import secrets from Vault
