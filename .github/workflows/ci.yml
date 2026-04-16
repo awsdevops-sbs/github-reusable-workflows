@@ -50,6 +50,7 @@ jobs:
 
       - name: Release software
         run: echo "Ok"
+        if: ${{ startsWith(github.ref, 'refs/tags/') }}
 
 
 
