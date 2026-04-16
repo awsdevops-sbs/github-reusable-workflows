@@ -14,7 +14,6 @@ on:
          required: true
 
 
-
 jobs:
   CI_Steps:
     runs-on: [self-hosted]
