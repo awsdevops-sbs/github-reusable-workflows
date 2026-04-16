@@ -1,5 +1,4 @@
-name: Continous intgeration
-
+name: Continous intgration -reusable
 on:
   workflow_call:
     inputs:
@@ -39,18 +38,6 @@ jobs:
       - name: Code Build
         run: echo "Ok"
 
-      - name: Import secrets from Vault
-        uses: hashicorp/vault-action@v2
-        id: vault-secrets
-        with:
-          url: http://vault.awsdevops16297.sbs:8200/
-          method: jwt
-          role: github-actions
-          tlsSkipVerify: true
-          secrets: |
-            common/data/common sonarqube_user | sonarqube_user;
-            common/data/common sonarqube_password | sonarqube_password;
-            
 
       - name: Code Unit Test
         run: echo npm runtest:unit
