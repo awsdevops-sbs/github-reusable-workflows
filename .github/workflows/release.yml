@@ -1,4 +1,4 @@
-name: Continous intgration -reusable
+name:  Release - Reusable
 on:
   workflow_call:
     inputs:
