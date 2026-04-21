@@ -41,7 +41,6 @@ jobs:
       -  name: Create Version File
          run: echo ${GITHUB_REF_NAME} >VERSION
 
-
       - name: Prepare artifact
         run: |
           sudo dnf install -y zip
