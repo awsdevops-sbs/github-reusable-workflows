@@ -10,7 +10,7 @@ on:
         type: boolean
       release_archive_file:
         required: true
-        type: boolean
+        type: string
     secrets:
       vault_token:
         required: true
@@ -42,7 +42,7 @@ jobs:
          run: echo ${GITHUB_REF_NAME} >VERSION
 
       -  name: prepare artifact
-         run: zip -r ${GITHUB_REF_NAME}.zip $ {{ inputs.release_archive_file }}
+         run: zip -r ${GITHUB_REF_NAME}.zip ${{ inputs.release_archive_file }}
 
       -  name: upload artifact to artifactory
          run: curl -f -v -u${{ steps.vault-secrets.outputs.artifactory_user}}:${{ steps.vault-secrets.outputs.artifactory_password}} -T ${GITHUB_REF_NAME}.zip "http://artifactory.awsdevops16297.sbs:8081/artifactory/${{ inputs.project_name }}/${GITHUB_REF_NAME}.zip"
