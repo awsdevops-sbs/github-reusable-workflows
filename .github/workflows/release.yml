@@ -41,8 +41,10 @@ jobs:
       -  name: Create Version File
          run: echo ${GITHUB_REF_NAME} >VERSION
 
-      -  name: prepare artifact
-         run: zip -r ${GITHUB_REF_NAME}.zip ${{ inputs.release_archive_file }}
+      - name: Prepare artifact
+        run: |
+          sudo dnf install -y zip
+          zip -r ${GITHUB_REF_NAME}.zip ${{ inputs.release_archive_file }}
 
       -  name: upload artifact to artifactory
          run: curl -f -v -u${{ steps.vault-secrets.outputs.artifactory_user}}:${{ steps.vault-secrets.outputs.artifactory_password}} -T ${GITHUB_REF_NAME}.zip "http://artifactory.awsdevops16297.sbs:8081/artifactory/${{ inputs.project_name }}/${GITHUB_REF_NAME}.zip"
