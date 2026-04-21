@@ -8,6 +8,9 @@ on:
       npm_install:
         required: true
         type: boolean
+      release_archive_file:
+        required: true
+        type: boolean
     secrets:
       vault_token:
         required: true
@@ -32,29 +35,21 @@ jobs:
           token: ${{ secrets.vault_token }}
           tlsSkipVerify: true
           secrets: |
-            common/data/common sonarqube_user | sonarqube_user;
-            common/data/common sonarqube_password | sonarqube_password;
+            common/data/common artifactory_user | artifactory_user ;
+            common/data/common artifactory_password | artifactory_password;
 
-      - name: Code Lint
-        run: echo "Ok"
+      -  name: Create Version File
+         run: echo ${GITHUB_REF_NAME} >VERSION
 
-      - name: Code Build
-        run: echo "Ok"
+      -  name: prepare artifact
+         run: zip -r ${GITHUB_REF_NAME}.zip $ {{ inputs.release_archive_file }}
 
+      -  name: upload artifact to artifactory
+         run: curl -f -v -u${{ steps.vault-secrets.outputs.artifactory_user}}:${{ steps.vault-secrets.outputs.artifactory_password}} -T ${GITHUB_REF_NAME}.zip "http://artifactory.awsdevops16297.sbs:8081/artifactory/${{ inputs.project_name }}/${GITHUB_REF_NAME}.zip"
 
-      - name: Code Unit Test
-        run: echo npm runtest:unit
-
-      - name: Code integration Test
-        run: echo npm runtest:integration
+        #curl -f -v --user ${{ steps.vault-secrets.outputs.artifactory_user }}:${{ steps.vault-secrets.outputs.artifactory_password }} --data-binary @artifact.zip -X PUT "http://artifactory-internal.rdevops6a.online:8081/artifactory/${{ inputs.project_name }}/${GITHUB_REF_NAME}.zip"
 
 
-      - name: Code Review
-        run: echo /opt/sonar-scanner-5.0.1.3006-linux/bin/sonar-scanner -Dsonar.host.url=http://sonarqube-internal.awsdevops16297.sbs:9000 -Dsonar.projectKey=${{ inputs.project_name }} -Dsonar.qualitygate.wait=true -Dsonar.login=${{ steps.vault-secrets.outputs.sonarqube_user}} -Dsonar.password=${{ steps.vault-secrets.outputs.sonarqube_password }}
-
-      - name: Release software
-        run: echo "Ok"
-        if: ${{ startsWith(github.ref, 'refs/tags/') }}
 
 
 
