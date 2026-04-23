@@ -55,7 +55,7 @@ jobs:
            curl -X POST \
              -H "X-Vault-Token: ${{ secrets.vault_token }}" \
              -H "Content-Type: application/json" \
-             -d "{\"data\": {\"APP_VERSION\": \"${GITHUB_REF_NAME}\"}}" \
+             -d "{\"data\": {\"App_VERSION\": \"${GITHUB_REF_NAME}\"}}" \
              http://vault.awsdevops16297.sbs:8200/v1/expense-dev/data/${{ inputs.project_name }}
          
 
