@@ -50,7 +50,8 @@ jobs:
       -  name: upload artifact to artifactory
          run: curl -f -v -u${{ steps.vault-secrets.outputs.artifactory_user}}:${{ steps.vault-secrets.outputs.artifactory_password}} -T ${GITHUB_REF_NAME}.zip "http://artifactory-internal.awsdevops16297.sbs:8081/artifactory/${{ inputs.project_name }}/${GITHUB_REF_NAME}.zip"
          #run: curl -f -v --user ${{ steps.vault-secrets.outputs.artifactory_user }}:${{ steps.vault-secrets.outputs.artifactory_password }} --data-binary @${GITHUB_REF_NAME}.zip -X PUT "http://artifactory-internal.awsdevops16297.sbs:8081/artifactory/${{ inputs.project_name }}/${GITHUB_REF_NAME}.zip"
-      -  name: Trigger GoCD pipeline
+
+      -  name: Trigger GoCD pipeline to get the update secret
          run: |
            echo '{
              "environment_variables": [
