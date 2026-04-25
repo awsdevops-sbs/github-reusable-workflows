@@ -56,13 +56,13 @@ jobs:
            echo '{
              "environment_variables": [
                {
-                 "name": "App_VERSION",
+                 "name": "APP_VERSION",
                  "secure": false,
-                 "value": "app_version"
+                 "value": "APP_VERSION"
                }
              ],
              "update_materials_before_scheduling": true
-           }' | sed -e "s/app_version/${GITHUB_REF_NAME}/" | jq > data.json
+           }' | sed -e "s/APP_VERSION/${GITHUB_REF_NAME}/" | jq > data.json
 
            curl "http://172.31.67.92:8153/go/api/pipelines/${{ inputs.project_name }}/schedule" \
              -H "Accept: application/vnd.go.cd.v1+json" \
